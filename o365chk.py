@@ -38,17 +38,6 @@ def get_status(response_json):
 
     x = json.loads(x)
 
-    status = x['NameSpaceType']
-
-    if status == 'Managed':
-        print('This domain is Managed')
-    elif status == 'Federated':
-        print('This domain is Federated')
-    elif status == 'Unknown':
-        print('No O365 service could be identified for this domain, or it was entered incorrectly.')
-    else:
-        print('No O365 status could be found, or there was an error')
-
     return x
 
 
@@ -76,5 +65,10 @@ def main():
     result = get_status(data)
 
     print(json.dumps(result, indent=number_of_indent, sort_keys=True))
+
+    with open("result.json", "w") as outfile:
+        json.dump(result, outfile)
+
+
 
 main()
